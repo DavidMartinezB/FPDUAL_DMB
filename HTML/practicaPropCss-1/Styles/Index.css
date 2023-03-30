@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+
+body {
+    background-color: lightblue;
+    font-family: sans-serif;
+}
+
+h1 {
+    font-size: 300%;
+    padding: 0px;
+    margin: 0px;
+}
+
+h2 {
+    font-size: 200%;
+    margin-bottom: 35px;
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#sans {
+    padding-left: 10px;
+    font-family: 'Comic Neue';
+    color:red;
+}
+
+p {
+    text-align: justify;
+    text-indent: 30px;
+}
+
+#marcas {
+    color: orangered;
+}
+
+#fecha {
+    color: orange;
+}
+
+#nombre {
+    background-color: white;
+}
