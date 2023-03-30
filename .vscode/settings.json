@@ -1,5 +1,6 @@
 {
     "conventionalCommits.scopes": [
-        "HTML-CSS"
+        "HTML-CSS",
+        "GIT"
     ]
 }

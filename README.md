@@ -8,7 +8,7 @@
 
     -[Cursos y Certificados](FPDUAL_DMB/CURSOS)
 
-    -[PROGRAMACIÓN](FPDUAL_DMB/PROGRAMACIÓN)
+    -[PROGRAMACIÓN](PROGRAMACIÓN)
 
 
 ## Diario Semanal
