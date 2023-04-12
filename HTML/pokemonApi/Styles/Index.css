@@ -1,0 +1,92 @@
+@font-face {
+    font-family: 'Pokemon';
+    src: url('../fonts/Pokemon\ Solid.ttf');
+    font-style: normal;
+    font-weight: normal;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FEF2F4;
+}
+
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    grid: 20% / auto auto auto auto;
+    justify-content: space-around;
+}
+
+#anterior {
+    color: #FEF2F4;
+    background-color: D14D72;
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+#siguiente {
+    color: #FEF2F4;
+    background-color: D14D72;
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.botones {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 40px;
+}
+
+.imagen-Pokemon {
+    display: flex;
+    width: 55%;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+}
+
+.contenedor-Pokemon {
+    position: relative;
+    flex-direction: column;
+    flex-grow: 100%;
+    flex-shrink: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    border-radius: 15px;
+    margin: 0.7%;
+    max-width: 20%;
+    max-height: 15%;
+    min-width: 20%;
+    min-height: 15%;
+    background-color: D14D72;
+    transition: background-color, 0.3s;
+    overflow: visible;
+}
+
+.nombre-Pokemon {
+    color: #FEF2F4;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.id-Pokemon {
+    position: static;
+    color: #FEF2F4;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+    font-size: 1.3em;
+}
+
+.contenedor-Pokemon:hover {
+    color: black;
+    background-color: FFABAB;
+}
