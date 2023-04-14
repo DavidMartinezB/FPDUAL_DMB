@@ -5,6 +5,10 @@
     font-weight: normal;
 }
 
+.detalles-Pokemon {
+    z-index: 1;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -14,9 +18,11 @@ body {
 }
 
 #container {
+    font-family: sans-serif;
+    align-items: center;
     display: flex;
     flex-wrap: wrap;
-    grid: 20% / auto auto auto auto;
+    
     justify-content: space-around;
 }
 
@@ -26,6 +32,7 @@ body {
     border: none;
     border-radius: 10px;
     padding: 20px;
+    transition: background-color, 0.3s;
 }
 
 #siguiente {
@@ -34,6 +41,7 @@ body {
     border: none;
     border-radius: 10px;
     padding: 20px;
+    transition: background-color, 0.3s;
 }
 
 .botones {
@@ -41,6 +49,7 @@ body {
     flex-direction: row;
     justify-content: space-between;
     margin: 40px;
+    transition: background-color, 0.3s;
 }
 
 .imagen-Pokemon {
@@ -72,6 +81,7 @@ body {
 }
 
 .nombre-Pokemon {
+    text-transform: uppercase;
     color: #FEF2F4;
     text-align: center;
     font-size: 1.5em;
@@ -81,12 +91,39 @@ body {
     position: static;
     color: #FEF2F4;
     text-align: center;
-    padding: 0px;
-    margin: 0px;
     font-size: 1.3em;
+}
+
+#anterior:hover {
+    background-color: FFABAB;
+}
+
+#siguiente:hover {
+    background-color: FFABAB;
 }
 
 .contenedor-Pokemon:hover {
     color: black;
     background-color: FFABAB;
 }
+
+@media screen and (max-width: 1200px) {
+    .contenedor-Pokemon {
+        flex: 1 0 30%;
+        max-width: 30%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .contenedor-Pokemon {
+      flex: 1 0 50%;
+      max-width: 50%;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .contenedor-Pokemon {
+      flex: 1 0 75%;
+      max-width: 75%;
+    }
+  }
