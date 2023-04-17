@@ -46,3 +46,18 @@ divInfo.appendChild(imagenInfo);
 divInfo.appendChild(idInfo);
 container2.appendChild(div);
 }
+
+
+
+divDetalles.innerHTML = `
+      <div class="detalles-Pokemon-content">
+        <img class="imagen-detalle" src="${pokemon.imgInfo ? pokemon.imgInfo : pokemon.img}" alt="${nombrePokemon}">
+        <h2>${nombrePokemon}</h2>
+        <p>Altura: ${pokemon.altura}</p>
+        <p>Peso: ${pokemon.peso}</p>
+        <p>Tipo:</p>
+        <ul>
+          ${pokemon.tipos.map(tipo => `<li>${tipo.type.name}</li>`).join('')}
+        </ul>
+      </div>
+    `;
