@@ -5,16 +5,14 @@
     font-weight: normal;
 }
 
-.detalles-Pokemon {
-    z-index: 1;
-}
+
 
 * {
     box-sizing: border-box;
 }
 
 body {
-    background-color: #FEF2F4;
+    background-color: #CBCBCB;
 }
 
 #container {
@@ -28,7 +26,7 @@ body {
 
 #anterior {
     color: #FEF2F4;
-    background-color: D14D72;
+    background-color: C83A3A;
     border: none;
     border-radius: 10px;
     padding: 20px;
@@ -37,7 +35,7 @@ body {
 
 #siguiente {
     color: #FEF2F4;
-    background-color: D14D72;
+    background-color: C83A3A;
     border: none;
     border-radius: 10px;
     padding: 20px;
@@ -60,6 +58,70 @@ body {
     max-width: 100%;
 }
 
+.blur-Pokemon {
+    margin: 0;
+    padding: 0;
+    color: white;
+    
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+}
+
+.detalles-divContent-Pokemon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.detalles-divContentStats-Pokemon {
+    background-color: FFABAB;
+    border-radius: 15px;
+    width: 30%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.detalles-divImagen-Pokemon {
+    text-transform: uppercase; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.detalles-imagen-Pokemon {
+    height: 80%;
+}
+
+.detalles-Pokemon {
+    display: flex;
+    background-color: D14D72;
+    border-radius: 15px;
+    padding: 50px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    width: 60%;
+    height: 60%;
+}
+
 .contenedor-Pokemon {
     position: relative;
     flex-direction: column;
@@ -71,18 +133,16 @@ body {
     align-content: center;
     border-radius: 15px;
     margin: 0.7%;
-    max-width: 20%;
-    max-height: 15%;
-    min-width: 20%;
-    min-height: 15%;
-    background-color: D14D72;
+    width: 20%;
+    height: 15%;
+    background-color: C83A3A;
     transition: background-color, 0.3s;
     overflow: visible;
 }
 
 .nombre-Pokemon {
     text-transform: uppercase;
-    color: #FEF2F4;
+    color: #EDECEC;
     text-align: center;
     font-size: 1.5em;
 }
@@ -95,16 +155,16 @@ body {
 }
 
 #anterior:hover {
-    background-color: FFABAB;
+    background-color: CA7777;
 }
 
 #siguiente:hover {
-    background-color: FFABAB;
+    background-color: CA7777;
 }
 
 .contenedor-Pokemon:hover {
     color: black;
-    background-color: FFABAB;
+    background-color: CA7777;
 }
 
 @media screen and (max-width: 1200px) {
