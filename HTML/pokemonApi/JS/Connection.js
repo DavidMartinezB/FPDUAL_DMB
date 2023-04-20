@@ -103,8 +103,8 @@ function crearDetallesPokemon(event, pokeArray) {
 
     tituloPoke.textContent = nombrePokemon;
     peso.textContent = `Peso del pokemon: ${pesoPokemon}`;
-    altura.textContent = alturaPokemon;
-    id.textContent = idPokemon;
+    altura.textContent = `Altura del Pokemon: ${alturaPokemon}`;
+    id.textContent = `Altura del Pokemon: ${idPokemon}`;
     imagen.src = imgPokemon;
  
     divDetallesImagen.classList.add('detalles-divImagen-Pokemon');
