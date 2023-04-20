@@ -62,7 +62,6 @@ body {
     margin: 0;
     padding: 0;
     color: white;
-    
     position: fixed;
     left: 50%;
     top: 50%;
@@ -84,7 +83,9 @@ body {
 }
 
 .detalles-divContentStats-Pokemon {
-    background-color: FFABAB;
+    flex-grow: 100%;
+    flex-shrink: 100%;
+    background-color: CA7777;
     border-radius: 15px;
     width: 30%;
     height: 50%;
@@ -96,7 +97,10 @@ body {
 }
 
 .detalles-divImagen-Pokemon {
+    flex-grow: 100%;
+    flex-shrink: 100%;
     text-transform: uppercase; 
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -105,12 +109,15 @@ body {
 }
 
 .detalles-imagen-Pokemon {
-    height: 80%;
+    max-width: 60%;
 }
 
 .detalles-Pokemon {
+    flex-grow: 100%;
+    flex-shrink: 100%;
     display: flex;
-    background-color: D14D72;
+    background-color: C83A3A;
+    flex-wrap: wrap;
     border-radius: 15px;
     padding: 50px;
     position: fixed;
@@ -167,8 +174,31 @@ body {
     background-color: CA7777;
 }
 
+
 @media screen and (max-width: 1200px) {
     .contenedor-Pokemon {
+        flex: 1 0 30%;
+        max-width: 30%;
+    }
+
+    .detalles-imagen-Pokemon {
+        max-width: 30%;
+    }
+
+    .detalles-Pokemon {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex: 1 0 30%;
+        max-width: 30%;
+    }
+
+    .detalles-divContent-Pokemon {
+        flex: 1 0 30%;
+        max-width: 30%;
+    }
+
+    .detalles-divImagen-Pokemon {
         flex: 1 0 30%;
         max-width: 30%;
     }
@@ -179,11 +209,56 @@ body {
       flex: 1 0 50%;
       max-width: 50%;
     }
+
+    .detalles-imagen-Pokemon {
+        max-width: 50%;
+    }
+
+    .detalles-Pokemon {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex: 1 0 50%;
+        max-width: 50%;
+    }
+
+    .detalles-divContent-Pokemon {
+        flex: 1 0 50%;
+        max-width: 50%;
+    }
+
+    .detalles-divImagen-Pokemon {
+        flex: 1 0 50%;
+        max-width: 50%;
+    }
+
   }
   
   @media screen and (max-width: 480px) {
     .contenedor-Pokemon {
       flex: 1 0 75%;
       max-width: 75%;
+    }
+
+    .detalles-imagen-Pokemon {
+        max-width: 75%;
+    }
+
+    .detalles-Pokemon {
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        flex: 1 0 75%;
+        max-width: 75%;
+    }
+
+    .detalles-divContent-Pokemon {
+        flex: 1 0 75%;
+        max-width: 75%;
+    }
+
+    .detalles-divImagen-Pokemon {
+        flex: 1 0 75%;
+        max-width: 75%;
     }
   }
