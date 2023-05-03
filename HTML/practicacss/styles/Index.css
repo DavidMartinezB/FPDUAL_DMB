@@ -1,0 +1,41 @@
+
+body {
+    margin: 10px 10%;
+    background-color: lightgray;
+    font-family: sans-serif;
+}
+
+h1 {
+    font-size: 300%;
+    letter-spacing: 8px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 200%;
+    background-color: gray;
+    color: white;
+    padding: 5px;
+}
+
+img {
+    height: 150px;
+}
+
+.contenedor {
+    display: flex;
+    margin: 10px 100px;
+}
+
+.articulo {
+    text-align: justify;
+    text-indent: 30px;
+}
+
+#fecha {
+    color: red;
+}
+
+#recomendaciones {
+    background-color: white;
+}

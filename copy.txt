@@ -1,0 +1,63 @@
+
+info = {
+nombre: data.name,
+id: data.id,
+img: data.sprites.front_default
+}
+
+pokeArray[i].tipos.forEach(t => {
+var tip = document.createElement('span');
+console.log(i, t.type.name);
+tip.textContent = t.type.name;
+div.appendChild(tip);
+})
+
+const infoPokemon = document.createElement('div');
+nuevoDiv.innerHTML = 'Contenido del nuevo div';
+nuevoDiv.style.position = 'absolute';
+nuevoDiv.style.top = '0';
+nuevoDiv.style.left = '0';
+console.log('done')
+nuevoDiv.style.width = '100%';
+nuevoDiv.style.height = '100%';
+nuevoDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+container.appendChild(infoPokemon)
+
+function createDivInfo(pokeArray) {
+var container2 = document.getElementById('container-2')
+while (container2.firstChild) {
+container2.removeChild(container2.lastChild);
+}
+
+var divInfo = document.createElement('div');
+var imagenInfo = document.createElement('img')
+var nameInfo = document.createElement('p');
+var idInfo = document.createElement('p');
+var tip = document.createElement('p');
+
+tip.textContent = pokeArray[i].tipos;
+nameInfo.textContent += pokeArray[i].nombre; 
+idInfo.textContent = pokeArray[i].id; 
+imagenInfo.src = pokeArray[i].img;
+
+divInfo
+divInfo.appendChild(nameInfo);
+divInfo.appendChild(imagenInfo);
+divInfo.appendChild(idInfo);
+container2.appendChild(div);
+}
+
+
+
+divDetalles.innerHTML = `
+      <div class="detalles-Pokemon-content">
+        <img class="imagen-detalle" src="${pokemon.imgInfo ? pokemon.imgInfo : pokemon.img}" alt="${nombrePokemon}">
+        <h2>${nombrePokemon}</h2>
+        <p>Altura: ${pokemon.altura}</p>
+        <p>Peso: ${pokemon.peso}</p>
+        <p>Tipo:</p>
+        <ul>
+          ${pokemon.tipos.map(tipo => `<li>${tipo.type.name}</li>`).join('')}
+        </ul>
+      </div>
+    `;

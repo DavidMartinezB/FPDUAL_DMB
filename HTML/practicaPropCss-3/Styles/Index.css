@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Changa+One&display=swap');
+
+body {
+    margin: 10px;
+    background-color: #BAE7F1;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    font-family: 'Changa One';
+    font-size: 300%;
+    letter-spacing: 5px;
+}
+
+h2 {
+    font-family: 'Changa One';
+    font-size: 300%;
+    text-shadow: 3px 2px #333;
+    color: #459CAE;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-separador {
+    display: flex;
+    justify-content: center;
+}
+
+.separador {
+    margin: 20px;
+    
+    width: 800px;
+    background-color: #459CAE;
+    border-radius: 10px;
+    border: 7px;
+    border-color: #459CAE;
+    border-style: solid;
+}
+
+.img-animal {
+    border: 5px;
+    border-color: #459CAE;
+    border-style: solid;
+}
+
+.img-animal > img {
+    padding: 8px;
+}
+
+.animal {
+    display: flex;
+    
+}
+
+.animal > p {
+    margin-top: 0px;
+    margin-left: 10px;
+}
+
+#nombres {
+    color: red;
+    background-color: whitesmoke;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+#underlined {
+    font-weight: bold;
+
+}
