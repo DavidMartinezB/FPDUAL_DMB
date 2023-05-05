@@ -1,5 +1,6 @@
 package zooPractica;
 
+
 public abstract class Animal {
 	
 	protected int edad;
