@@ -1,227 +1,227 @@
-drop database if exists pokemondb;
-create database pokemondb
-character set utf8mb4;
-use pokemondb;
+DROP DATABASE IF EXISTS pokemondb;
+CREATE DATABASE pokemondb
+CHARACTER SET UTF8MB4;
+USE pokemondb;
 
-create table tipo_ataque (
-	id_tipo_ataque int unsigned,
-    tipo varchar (8) not null,
-    primary key(id_tipo_ataque)
+CREATE TABLE tipo_ataque (
+	id_tipo_ataque INT UNSIGNED,
+    tipo VARCHAR (8) NOT NULL,
+    PRIMARY KEY(id_tipo_ataque)
 );
 
-create table tipo (
-	id_tipo int unsigned,
-    nombre varchar (10) not null,
-    id_tipo_ataque int unsigned,
-    primary key(id_tipo),
-	constraint pok_tipo_fk foreign key (id_tipo_ataque) references tipo_ataque(id_tipo_ataque)
-		on delete cascade
-        on update cascade
+CREATE TABLE tipo (
+	id_tipo INT UNSIGNED,
+    nombre VARCHAR (10) NOT NULL,
+    id_tipo_ataque INT UNSIGNED,
+    PRIMARY KEY(id_tipo),
+	CONSTRAINT pok_tipo_fk FOREIGN KEY (id_tipo_ataque) REFERENCES tipo_ataque(id_tipo_ataque)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
-create table movimiento (
-	id_movimiento int unsigned,
-    nombre varchar (20) not null,
-    potencia int unsigned not null,
-    precision_mov int unsigned not null,
-    descripcion varchar(500) not null,
-    pp int unsigned not null,
-    id_tipo int unsigned,
-    prioridad int not null,
-    primary key(id_movimiento),
-    constraint pok_movimiento_fk foreign key (id_tipo) references tipo(id_tipo)
-		on delete cascade
-        on update cascade
+CREATE TABLE movimiento (
+	id_movimiento INT UNSIGNED,
+    nombre VARCHAR (20) NOT NULL,
+    potencia INT UNSIGNED NOT NULL,
+    precision_mov INT UNSIGNED NOT NULL,
+    descripcion VARCHAR(500) NOT NULL,
+    pp INT UNSIGNED NOT NULL,
+    id_tipo INT UNSIGNED,
+    prioridad INT NOT NULL,
+    PRIMARY KEY(id_movimiento),
+    CONSTRAINT pok_movimiento_fk FOREIGN KEY (id_tipo) REFERENCES tipo(id_tipo)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
-create table pokemon (
-	numero_pokedex int unsigned,
-    nombre varchar (15) not null,
-    peso float (6.3) not null,
-    altura float (6.3) not null,
-    primary key(numero_pokedex)
+CREATE TABLE pokemon (
+	numero_pokedex INT UNSIGNED,
+    nombre VARCHAR (15) NOT NULL,
+    peso FLOAT (6.3) NOT NULL,
+    altura FLOAT (6.3) NOT NULL,
+    PRIMARY KEY(numero_pokedex)
 );
 
-create table pokemon_tipo (
-	numero_pokedex int unsigned,
-    id_tipo int unsigned,
-    primary key(numero_pokedex, id_tipo),
-    constraint pok_pokemon_tipo_fk foreign key (id_tipo) references tipo(id_tipo)
-		on delete cascade
-        on update cascade,
-	constraint pok_pokemon_tipo_fk1 foreign key (numero_pokedex) references pokemon(numero_pokedex)
-		on delete cascade
-        on update cascade
+CREATE TABLE pokemon_tipo (
+	numero_pokedex INT UNSIGNED,
+    id_tipo INT UNSIGNED,
+    PRIMARY KEY(numero_pokedex, id_tipo),
+    CONSTRAINT pok_pokemon_tipo_fk FOREIGN KEY (id_tipo) REFERENCES tipo(id_tipo)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE,
+	CONSTRAINT pok_pokemon_tipo_fk1 FOREIGN KEY (numero_pokedex) REFERENCES pokemon(numero_pokedex)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
-create table estadisticas_base (
-	numero_pokedex int unsigned,
-    ps int unsigned,
-    ataque int unsigned,
-    defensa int unsigned,
-    especial int unsigned,
-    velocidad int unsigned,
-    primary key(numero_pokedex),
-    constraint pok_estadisticas_base_fk foreign key (numero_pokedex) references pokemon(numero_pokedex)
-		on delete cascade
-        on update cascade
+CREATE TABLE estadisticas_base (
+	numero_pokedex INT UNSIGNED,
+    ps INT UNSIGNED,
+    ataque INT UNSIGNED,
+    defensa INT UNSIGNED,
+    especial INT UNSIGNED,
+    velocidad INT UNSIGNED,
+    PRIMARY KEY(numero_pokedex),
+    CONSTRAINT pok_estadisticas_base_fk FOREIGN KEY (numero_pokedex) REFERENCES pokemon(numero_pokedex)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
-create table pokemon_movimiento_forma (
-	numero_pokedex int unsigned,
-    id_movimiento int unsigned,
-    id_forma_aprendizaje int unsigned,
-    primary key(numero_pokedex, id_movimiento, id_forma_aprendizaje),
-    constraint pok_pokemon_movimiento_forma_fk foreign key (numero_pokedex) references pokemon(numero_pokedex)
-		on delete cascade
-        on update cascade,
-	constraint pok_pokemon_movimiento_forma_fk1 foreign key (id_movimiento) references movimiento(id_movimiento)
-		on delete cascade
-        on update cascade
+CREATE TABLE pokemon_movimiento_forma (
+	numero_pokedex INT UNSIGNED,
+    id_movimiento INT UNSIGNED,
+    id_forma_aprendizaje INT UNSIGNED,
+    PRIMARY KEY(numero_pokedex, id_movimiento, id_forma_aprendizaje),
+    CONSTRAINT pok_pokemon_movimiento_forma_fk FOREIGN KEY (numero_pokedex) REFERENCES pokemon(numero_pokedex)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE,
+	CONSTRAINT pok_pokemon_movimiento_forma_fk1 FOREIGN KEY (id_movimiento) REFERENCES movimiento(id_movimiento)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
-create table efecto_secundario (
-    id_efecto_secundario int unsigned,
-    efecto_secundario varchar(30),
-    primary key(id_efecto_secundario)
+CREATE TABLE efecto_secundario (
+    id_efecto_secundario INT UNSIGNED,
+    efecto_secundario VARCHAR(30),
+    PRIMARY KEY(id_efecto_secundario)
 );
 
 
-create table movimiento_efecto_secundario (
-	id_movimiento int unsigned,
-    id_efecto_secundario int unsigned,
-    probabilidad float(6.3),
-    primary key(id_movimiento, id_efecto_secundario),
-    constraint pok_movimiento_efecto_secundario_fk foreign key (id_efecto_secundario) references efecto_secundario(id_efecto_secundario)
-		on delete cascade
-        on update cascade,
-	constraint pok_movimiento_efecto_secundario_fk1 foreign key (id_movimiento) references movimiento(id_movimiento)
-		on delete cascade
-        on update cascade
+CREATE TABLE movimiento_efecto_secundario (
+	id_movimiento INT UNSIGNED,
+    id_efecto_secundario INT UNSIGNED,
+    probabilidad FLOAT(6.3),
+    PRIMARY KEY(id_movimiento, id_efecto_secundario),
+    CONSTRAINT pok_movimiento_efecto_secundario_fk FOREIGN KEY (id_efecto_secundario) REFERENCES efecto_secundario(id_efecto_secundario)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE,
+	CONSTRAINT pok_movimiento_efecto_secundario_fk1 FOREIGN KEY (id_movimiento) REFERENCES movimiento(id_movimiento)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
-create table evoluciona_de (
-	pokemon_evolucionado int unsigned,
-    pokemon_origen int unsigned,
-    primary key(pokemon_evolucionado, pokemon_origen),
-    constraint pok_evoluciona_de_fk foreign key (pokemon_evolucionado) references pokemon(numero_pokedex)
-		on delete cascade
-        on update cascade,
-	constraint pok_evoluciona_de_fk1 foreign key (pokemon_origen) references pokemon(numero_pokedex)
-		on delete cascade
-        on update cascade
+CREATE TABLE evoluciona_de (
+	pokemon_evolucionado INT UNSIGNED,
+    pokemon_origen INT UNSIGNED,
+    PRIMARY KEY(pokemon_evolucionado, pokemon_origen),
+    CONSTRAINT pok_evoluciona_de_fk FOREIGN KEY (pokemon_evolucionado) REFERENCES pokemon(numero_pokedex)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE,
+	CONSTRAINT pok_evoluciona_de_fk1 FOREIGN KEY (pokemon_origen) REFERENCES pokemon(numero_pokedex)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
-create table tipo_evolucion (
-    id_tipo_evolucion int unsigned,
-    tipo_evolucion varchar(15),
-    primary key(id_tipo_evolucion)
+CREATE TABLE tipo_evolucion (
+    id_tipo_evolucion INT UNSIGNED,
+    tipo_evolucion VARCHAR(15),
+    PRIMARY KEY(id_tipo_evolucion)
 );
 
-create table forma_evolucion (
-    id_forma_evolucion int unsigned,
-    tipo_evolucion int unsigned,
-    primary key(id_forma_evolucion),
-    constraint pok_forma_evolucion_fk foreign key (tipo_evolucion) references tipo_evolucion(id_tipo_evolucion)
-		on delete cascade
-        on update cascade
+CREATE TABLE forma_evolucion (
+    id_forma_evolucion INT UNSIGNED,
+    tipo_evolucion INT UNSIGNED,
+    PRIMARY KEY(id_forma_evolucion),
+    CONSTRAINT pok_forma_evolucion_fk FOREIGN KEY (tipo_evolucion) REFERENCES tipo_evolucion(id_tipo_evolucion)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
-create table nivel_evolucion (
-    id_forma_evolucion int unsigned,
-    nivel int unsigned,
-    primary key(id_forma_evolucion),
-    constraint pok_nivel_evolucion_fk foreign key (id_forma_evolucion) references forma_evolucion(id_forma_evolucion)
-		on delete cascade
-        on update cascade
+CREATE TABLE nivel_evolucion (
+    id_forma_evolucion INT UNSIGNED,
+    nivel INT UNSIGNED,
+    PRIMARY KEY(id_forma_evolucion),
+    CONSTRAINT pok_nivel_evolucion_fk FOREIGN KEY (id_forma_evolucion) REFERENCES forma_evolucion(id_forma_evolucion)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
-create table pokemon_forma_evolucion (
-    numero_pokedex int unsigned,
-    id_forma_evolucion int unsigned,
-    primary key(numero_pokedex, id_forma_evolucion),
-    constraint pok_pokemon_forma_evolucion_fk foreign key (numero_pokedex) references pokemon(numero_pokedex)
-		on delete cascade
-        on update cascade,
-	constraint pok_pokemon_forma_evolucion_fk1 foreign key (id_forma_evolucion) references forma_evolucion(id_forma_evolucion)
-		on delete cascade
-        on update cascade
+CREATE TABLE pokemon_forma_evolucion (
+    numero_pokedex INT UNSIGNED,
+    id_forma_evolucion INT UNSIGNED,
+    PRIMARY KEY(numero_pokedex, id_forma_evolucion),
+    CONSTRAINT pok_pokemon_forma_evolucion_fk FOREIGN KEY (numero_pokedex) REFERENCES pokemon(numero_pokedex)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE,
+	CONSTRAINT pok_pokemon_forma_evolucion_fk1 FOREIGN KEY (id_forma_evolucion) REFERENCES forma_evolucion(id_forma_evolucion)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
-create table tipo_piedra (
-    id_tipo_piedra int unsigned,
-    nombre_piedra varchar(20),
-    primary key(id_tipo_piedra)
+CREATE TABLE tipo_piedra (
+    id_tipo_piedra INT UNSIGNED,
+    nombre_piedra VARCHAR(20),
+    PRIMARY KEY(id_tipo_piedra)
 );
 
-create table piedra (
-    id_forma_evolucion int unsigned,
-    id_tipo_piedra int unsigned,
-    primary key(id_forma_evolucion),
-    constraint pok_piedra_fk foreign key (id_forma_evolucion) references forma_evolucion(id_forma_evolucion)
-		on delete cascade
-        on update cascade,
-    constraint pok_piedra_fk1 foreign key (id_tipo_piedra) references tipo_piedra(id_tipo_piedra)
-		on delete cascade
-        on update cascade
+CREATE TABLE piedra (
+    id_forma_evolucion INT UNSIGNED,
+    id_tipo_piedra INT UNSIGNED,
+    PRIMARY KEY(id_forma_evolucion),
+    CONSTRAINT pok_piedra_fk FOREIGN KEY (id_forma_evolucion) REFERENCES forma_evolucion(id_forma_evolucion)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    CONSTRAINT pok_piedra_fk1 FOREIGN KEY (id_tipo_piedra) REFERENCES tipo_piedra(id_tipo_piedra)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
-create table tipo_forma_aprendizaje (
-    id_tipo_aprendizaje int unsigned,
-    tipo_aprendizaje varchar(20),
-    primary key(id_tipo_aprendizaje)
+CREATE TABLE tipo_forma_aprendizaje (
+    id_tipo_aprendizaje INT UNSIGNED,
+    tipo_aprendizaje VARCHAR(20),
+    PRIMARY KEY(id_tipo_aprendizaje)
 );
 
-create table forma_aprendizaje (
-    id_forma_aprendizaje int unsigned,
-    id_tipo_aprendizaje int unsigned,
-    primary key(id_forma_aprendizaje),
-    constraint pok_forma_aprendizaje_fk foreign key (id_tipo_aprendizaje) references tipo_forma_aprendizaje(id_tipo_aprendizaje)
-		on delete cascade
-        on update cascade
+CREATE TABLE forma_aprendizaje (
+    id_forma_aprendizaje INT UNSIGNED,
+    id_tipo_aprendizaje INT UNSIGNED,
+    PRIMARY KEY(id_forma_aprendizaje),
+    CONSTRAINT pok_forma_aprendizaje_fk FOREIGN KEY (id_tipo_aprendizaje) REFERENCES tipo_forma_aprendizaje(id_tipo_aprendizaje)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
-create table nivel_aprendizaje (
-    id_forma_aprendizaje int unsigned,
-    nivel int unsigned,
-    primary key(id_forma_aprendizaje),
-    constraint pok_nivel_aprendizaje_fk foreign key (id_forma_aprendizaje) references forma_aprendizaje(id_forma_aprendizaje)
-		on delete cascade
-        on update cascade
+CREATE TABLE nivel_aprendizaje (
+    id_forma_aprendizaje INT UNSIGNED,
+    nivel INT UNSIGNED,
+    PRIMARY KEY(id_forma_aprendizaje),
+    CONSTRAINT pok_nivel_aprendizaje_fk FOREIGN KEY (id_forma_aprendizaje) REFERENCES forma_aprendizaje(id_forma_aprendizaje)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
-create table mo (
-    id_forma_aprendizaje int unsigned,
-    mo varchar(5),
-    primary key(id_forma_aprendizaje),
-    constraint pok_mo_fk foreign key (id_forma_aprendizaje) references forma_aprendizaje(id_forma_aprendizaje)
-		on delete cascade
-        on update cascade
+CREATE TABLE mo (
+    id_forma_aprendizaje INT UNSIGNED,
+    mo VARCHAR(5),
+    PRIMARY KEY(id_forma_aprendizaje),
+    CONSTRAINT pok_mo_fk FOREIGN KEY (id_forma_aprendizaje) REFERENCES forma_aprendizaje(id_forma_aprendizaje)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
-create table mt (
-    id_forma_aprendizaje int unsigned,
-    mt varchar(5),
-    primary key(id_forma_aprendizaje),
-    constraint pok_mt_fk foreign key (id_forma_aprendizaje) references forma_aprendizaje(id_forma_aprendizaje)
-		on delete cascade
-        on update cascade
+CREATE TABLE mt (
+    id_forma_aprendizaje INT UNSIGNED,
+    mt VARCHAR(5),
+    PRIMARY KEY(id_forma_aprendizaje),
+    CONSTRAINT pok_mt_fk FOREIGN KEY (id_forma_aprendizaje) REFERENCES forma_aprendizaje(id_forma_aprendizaje)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
-create table pokemon_historico (
-		numero_pokedex int unsigned,
-		nombre varchar (15) not null,
-		peso float (6.3) not null,
-		altura float (6.3) not null,
-        fecha datetime default current_timestamp on update current_timestamp 
+CREATE TABLE pokemon_historico (
+		numero_pokedex INT UNSIGNED,
+		nombre VARCHAR (15) NOT NULL,
+		peso FLOAT (6.3) NOT NULL,
+		altura FLOAT (6.3) NOT NULL,
+        fecha DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
     );
 
 delimiter $$
-create trigger crearTablaPokHistoricos after insert on pokemon  
-for each row
-begin
-    insert into pokemon_historico(numero_pokedex, nombre, peso, altura) values (new.numero_pokedex, new.nombre, new.peso, new.altura);
-end $$
+CREATE TRIGGER crearTablaPokHistoricos AFTER INSERT ON pokemon  
+FOR EACH ROW
+BEGIN
+    INSERT INTO pokemon_historico(numero_pokedex, nombre, peso, altura) VALUES (new.numero_pokedex, new.nombre, new.peso, new.altura);
+END $$
 delimiter ;
 
 
