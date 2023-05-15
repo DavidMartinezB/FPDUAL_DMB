@@ -64,6 +64,7 @@ public class Prueba {
 				throw new IllegalArgumentException("Valor invalido:"+ choice);
 			}
 		} while (choice != 0);
+
 	}  
 
 }
