@@ -3,8 +3,6 @@ package parte2;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -14,30 +12,27 @@ public class UsaConnection2 {
 	public static void main(String[] args) throws SQLException, IOException {
 		BufferedReader reader = 
 				new BufferedReader(new InputStreamReader(System.in));
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pokemondb", "root", "Perritocaliente1@#");
 		ArrayList<Pokemon> pokemonList = new ArrayList<>();
 		int opcion;
 		String url = "https://pokeapi.co/api/v2/pokemon/?limit=151";
-		
 		do {
-			Pokemon.mostrarMenu();
+			Gestor.mostrarMenu();
 			opcion = Integer.parseInt(reader.readLine());
-			
 			switch (opcion) {
 			case 1: {
-				Pokemon.leerPorNumeroBD(reader ,conn, pokemonList);
+				Gestor.leerPorNumeroBD(reader ,Gestor.crearConex(), pokemonList);
 				break;
 			}
 			case 2: {
-				Pokemon.pokemonPesadosDB(conn, pokemonList);
+				Gestor.pokemonPesadosDB(Gestor.crearConex(), pokemonList);
 				break;
 			}
 			case 3: {
-				Pokemon.resultadoRespuestaAPI(url);
+				Gestor.resultadoRespuestaAPI(url);
 				break;
 			}
 			case 4 : {
-				Pokemon.modificarNombreDB(reader, conn, pokemonList);
+				Gestor.modificarNombreDB(reader, Gestor.crearConex(), pokemonList);
 				System.out.println();
 				break;
 			}
@@ -45,6 +40,7 @@ public class UsaConnection2 {
 				System.out.println("El programa finalizó");
 			}
 			default:
+				System.out.println("El valor introducido no es correcto");
 				break;
 			}
 			
