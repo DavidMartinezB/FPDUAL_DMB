@@ -1,51 +1,47 @@
-
 let offset = 0;
 const limit = 20;
-/* const maxPaginas = Math.ceil(905/limit); */
 
-const anterior = document.getElementById('anterior');
-const siguiente = document.getElementById('siguiente');
-
-async function getPokemonMinInfo(i) {
-    const resp = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
+async function getPokemonInfo(i) {
+    const resp = await fetch(`http://localhost:8080/pokemondb/pokemon/${i}`);
     const respJson = await resp.json();
-    return {
-        nombre: respJson.name,
-        id: respJson.id,
-        img: respJson.sprites.front_default,
-        imgInfo: respJson.sprites.other["official-artwork"].front_default,
-        tipos: respJson.types,
-        peso: respJson.weight,
-        altura: respJson.height
+    if (respJson !== null) {
+        return {
+            nombre: respJson.nombre,
+            id: respJson.numero_pokedex,
+            peso: respJson.peso,
+            altura: respJson.altura
+        };
+    }
+ else {
+        return null;
     }
 }
 
-/* async function getPokemonMaxInfo(i) {
-    const respMax = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${i}`);
-    const respMaxJson = await respMax.json();
+async function getPokemonIMG(i) {
+    const respImg = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
+    const respJsonImg = await respImg.json();
     return {
-        nombre: respMaxJson.name,
-        id: respMaxJson.id,
-        tipos: respMaxJson.types
+        img: respJsonImg.sprites.front_default,
+        imgInfo: respJsonImg.sprites.other["official-artwork"].front_default,
     }
 }
 
-async function getPokemonMaxList(offset, limit) {
-    var pokeArrayMax = [];
-    for (let i = offset+1; i < offset+limit+1; i++) {
+async function getPokemonIMGList(offset, limit) {
+    var pokeImgArray = [];
+    for (let i = offset+1; i <= offset+limit; i++) {
         console.log("Llamando a getPokemonInfo() desde getPokemonList()");
-        const infoMax = await getPokemonMaxInfo(i);
-        pokeArrayMax.push(infoMax);
+        const info = await getPokemonIMG(i);
+        pokeImgArray.push(info);
     }
-    return pokeArrayMax;
-}  */
+    return pokeImgArray;
+}
 
 
-async function getPokemonMinList(offset, limit) {
+async function getPokemonList(offset, limit) {
     var pokeArray = [];
-    for (let i = offset+1; i < offset+limit+1; i++) {
+    for (let i = offset+1; i <= offset+limit; i++) {
         console.log("Llamando a getPokemonInfo() desde getPokemonList()");
-        const info = await getPokemonMinInfo(i);
+        const info = await getPokemonInfo(i);
         pokeArray.push(info);
     }
     return pokeArray;
@@ -57,7 +53,7 @@ function siguientePag() {
     else */
         offset += limit;
         console.log(offset);
-        getPokemonMinList(offset, limit).then(lista => {
+        getPokemonList(offset, limit).then(lista => {
         createDiv(lista);
     });
     // TODO: Eliminar divs actuales
@@ -67,17 +63,14 @@ function anteriorPag() {
     /* if ((offset < limit))
         offset = 0;
     else */
-        offset -= limit;
+    offset -= limit;
     console.log(offset);
-    getPokemonMinList(offset, limit).then(lista => {
+    getPokemonList(offset, limit).then(lista => {
         createDiv(lista);
     });
 }
 
-function crearDetallesPokemon(event, pokeArray) {
-    /* const respDetails = fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokeArray}`);
-    const respJsonDetails = respDetails.json(); */
-
+function crearDetallesPokemon(event, pokeArray, pokeImgArray) {
     document.getElementById('container');
     const blurDiv = document.createElement('div');
     const divDetalles = document.createElement('div');
@@ -138,9 +131,10 @@ function crearDetallesPokemon(event, pokeArray) {
       divDetalles.remove();
       blurDiv.remove();
     });
-  }
+}
+ 
 
-function createDiv(pokeArray) {
+function createDiv(pokeArray, pokeImgArray) {
     const container = document.getElementById('container');
     while (container.firstChild) {
         container.removeChild(container.lastChild);
@@ -154,12 +148,12 @@ function createDiv(pokeArray) {
         var altura = document.createElement('p');
         var imagenInfo = document.createElement('img');
 
-        imagenInfo.src = pokeArray[i].imgInfo;
+        imagen.src = pokeImgArray[i].img;
+        imagenInfo.src = pokeImgArray[i].imgInfo;
         name.textContent = pokeArray[i].nombre; 
         peso.textContent = pokeArray[i].peso;
         altura.textContent = pokeArray[i].altura;
         id.textContent = pokeArray[i].id; 
-        imagen.src = pokeArray[i].img;
 
         id.classList.add('id-Pokemon');
         imagen.classList.add('imagen-Pokemon');
@@ -168,6 +162,8 @@ function createDiv(pokeArray) {
         peso.classList.add('peso-Pokemon');
         altura.classList.add('altura-Pokemon');
         div.classList.add('contenedor-Pokemon');
+
+        
 
         div.addEventListener('click', event => {
             crearDetallesPokemon( event, pokeArray);
@@ -188,11 +184,11 @@ function createDiv(pokeArray) {
 }
 
 document.addEventListener("DOMContentLoaded", async event => {
-    getPokemonMinList(offset, limit).then(lista => {
-        /* console.log(lista); */
-        createDiv(lista);
+    getPokemonList(offset, limit).then(lista => {
+        console.log(lista);
+        getPokemonIMG(offset, limit).then(imgLista => {
+            createDiv(lista, imgLista)
+        })
     });
 })
 
-siguiente.addEventListener("click", siguientePag);
-anterior.addEventListener("click", anteriorPag);
