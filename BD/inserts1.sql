@@ -1,4 +1,4 @@
-use pokemondb;
+use pokemondb1;
 
 SET GLOBAL FOREIGN_KEY_CHECKS=0;
 
