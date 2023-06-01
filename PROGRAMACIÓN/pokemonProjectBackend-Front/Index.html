@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="CSS/Index.css">
     <meta charset="UTF-8">
@@ -6,9 +7,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <header></header>
-    <div id="container"></div>
+    <header class="header">
+        <h1 id="title">MyPokeDex</h1>
+        <div class="buscador">
+            <label id="label" for="inpu-buscador">ID</label>
+            <input type="search" id="searchButton" placeholder="Id del pokemon">
+        </div>
+    </header>
+    <div class="main">
+        <div id="container">
+        </div>
+    </div>
+    <div class="botones">
+        <button id="anterior">Anterior</button>
+        <button id="siguiente">Siguiente</button>
+    </div>
+    <div class="crearPokemon">
+        <h2>Crea un Pokemon</h2>
+        <div class="form">
+            <form id="createForm" action="" method="post">
+                <label for="name">Nombre del pokemon</label>
+                <input required type="text" name="nombre" placeholder="Pikachu" id="nameForm">
+                <label for="weight">Peso del Pokemon</label>
+                <input required type="text" name="peso" placeholder="00" id="weightForm">
+                <label for="height">Altura del Pokemon</label>
+                <input required type="text" name="altura" placeholder="00" id="heightForm">
+                <input type="submit" value="Crear" id="crearPokemon">
+            </form>
+        </div>
+    </div>
     <script src="JS/Index.js"></script>
 </body>
+
 </html>
