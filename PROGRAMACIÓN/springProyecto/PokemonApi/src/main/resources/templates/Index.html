@@ -1,7 +1,7 @@
-<html lang="en">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <link rel="stylesheet" href="CSS/Index.css">
+    <link rel="stylesheet" href="../CSS/Index.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,16 +9,17 @@
 </head>
 
 <body>
-    <header class="header">
-        <h1 id="title">MyPokeDex</h1>
+    <header id="inicio" class="header">
+        <h1 id="title">La Poquedeh</h1>
         <div class="buscador">
             <label id="label" for="inpu-buscador">ID</label>
             <input type="search" id="searchButton" placeholder="Id del pokemon">
         </div>
     </header>
-    <div class="main">
-        <div id="container">
-        </div>
+    <div id="container">
+    </div>
+    <div id="opciones">
+        <button id="eliminarPokemon">Eliminar Pokemon</button>
     </div>
     <div class="botones">
         <button id="anterior">Anterior</button>
@@ -38,7 +39,7 @@
             </form>
         </div>
     </div>
-    <script src="JS/Index.js"></script>
+    <script src="../JS/Index.js"></script>
 </body>
 
 </html>

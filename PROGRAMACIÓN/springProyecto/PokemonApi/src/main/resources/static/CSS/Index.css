@@ -13,6 +13,11 @@ body {
     justify-content: center;
 }
 
+.msgAlert {
+    font-size: 2em;
+    color: #c83a3a;
+}
+
 .header {
     display: flex;
     align-items: center;
@@ -51,7 +56,7 @@ body {
     color: #fef2f4;
 }
 
-.buscador input[type="search"] {
+.buscador button[type="search"] {
     width: 100%;
     padding: 8px;
     font-size: 16px;
@@ -60,6 +65,38 @@ body {
 .botones {
     margin-top: 20px;
     text-align: center;
+}
+
+#opciones { 
+    display: none; 
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.boton {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 0 10px;
+    background-color: #ca7777;
+    color: #fef2f4;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#eliminarPokemon {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 0 10px;
+    background-color: #ca7777;
+    color: #fef2f4;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#eliminarPokemon:hover {
+    background-color: #c83a3a;
 }
 
 .botones button {
@@ -170,6 +207,38 @@ body {
 .crearPokemon > h2 {
     font-size: xx-large;
     color: #c83a3a;
+}
+
+.form {
+    margin-top: 20px;
+}
+
+.form label {
+    display: block;
+    margin-bottom: 10px;
+    color: #fef2f4;
+}
+
+.form input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 27.778px;
+    font-size: 16px;
+    background-color: #ca7777;
+    color: #fef2f4;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form input[type="submit"]:hover {
+    background-color: #c83a3a;
 }
 
 @media screen and (max-width: 600px) {

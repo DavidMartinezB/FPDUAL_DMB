@@ -3,6 +3,8 @@ let offset = 0;
 const limit = 20;
 const listas = {};
 
+const eliminarPokemon = document.getElementById('eliminarPokemon');
+const opciones = document.getElementById('opciones');
 const main = document.getElementsByClassName('main');
 const createForm = document.getElementById('createForm')
 const pokemonCards = document.querySelectorAll(".contenedor-Pokemon");
@@ -87,7 +89,7 @@ async function getPokemonIMGList(offset, limit) {
             }
 
         } else {
-            try { 
+            try {
                 const respImg = await fetch(`https://pokeapi.co/api/v2/pokemon/25`);
                 if (respImg.ok) {
                     const respJsonImg = await respImg.json();
@@ -250,6 +252,94 @@ function createDiv(pokeArray, pokeImgArray) {
         altura.style.display = "none";
     }
 }
+
+function removePokemonById(numeroPokedex) {
+
+
+    fetch(`http://localhost:8080/pokemondb/pokemon/delete/${numeroPokedex}`, {
+        method: 'DELETE',
+        mode: 'cors',
+        headers: {
+            'Access-Control-Allow-Origin': 'http://127.0.0.1:5500'
+        }
+    })
+        .then(resp => {
+            if (resp.ok) {
+                console.log("Se eliminó");
+            } else {
+                console.log("No se pudo eliminar");
+            }
+        })
+
+        .catch(error => {
+            console.error(error)
+        })
+
+}
+
+function alertDeletePokemon() {
+    const blur = document.createElement("div");
+    blur.classList.add("blur-Pokemon");
+
+    const divAlert = document.createElement("div");
+    divAlert.classList.add("detalles-Pokemon");
+
+    const msgAlert = document.createElement("h3");
+    msgAlert.classList.add("msgAlert");
+    msgAlert.textContent = "¿ESTÁS SEGURO DE QUE QUIERES ELIMINAR EL POKEMON?"
+
+    const divButtonAlert = document.createElement("div");
+    divButtonAlert.classList.add("contenedor-botones-alert");
+
+    const buttonAceptAlert = document.createElement("button");
+    buttonAceptAlert.textContent = "Eliminar"
+
+    const buttonDismissAlert = document.createElement("button");
+    buttonDismissAlert.textContent = "Cancelar"
+
+    buttonAceptAlert.addEventListener("click", () => {
+        const numeroPokedex = parseInt(buscador.value);
+        fetch(`http://localhost:8080/pokemondb/pokemon/delete/${numeroPokedex}`, {
+            method: 'DELETE',
+            mode: 'cors',
+            headers: {
+                'Access-Control-Allow-Origin': 'http://127.0.0.1:5500'
+            }
+        })
+            .then(resp => {
+                if (resp.ok) {
+                    console.log("Se eliminó");
+                } else {
+                    console.log("No se pudo eliminar");
+                }
+            })
+
+            .catch(error => {
+                console.error(error)
+            })
+
+        blur.remove();
+        divAlert.remove();
+    })
+
+    buttonDismissAlert.addEventListener("click", () => {
+        blur.remove();
+        divAlert.remove();
+    })
+
+    buttonAceptAlert.classList.add("boton");
+    buttonDismissAlert.classList.add("boton");
+
+    blur.appendChild(divAlert);
+    divAlert.appendChild(msgAlert);
+    divAlert.appendChild(divButtonAlert);
+    divButtonAlert.appendChild(buttonAceptAlert);
+    divButtonAlert.appendChild(buttonDismissAlert);
+    container.appendChild(blur);
+}
+
+
+
 function searchPokemonById(pokemonId) {
     fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
         .then(response => response.json())
@@ -269,8 +359,7 @@ function searchPokemonById(pokemonId) {
 }
 
 function displayPokemon(pokemon) {
-    const eliminarPokemon = document.createElement("p");
-    eliminarPokemon.textContent = 'Eliminar este pokemon';
+    opciones.style.display = 'flex';
 
     const tarjetaPokemon = document.createElement("div");
     tarjetaPokemon.classList.add("contenedor-Pokemon");
@@ -298,7 +387,6 @@ function displayPokemon(pokemon) {
 
     clearPokemon();
     container.appendChild(tarjetaPokemon);
-    container.appendChild(eliminarPokemon);
 }
 
 function clearPokemon() {
@@ -315,6 +403,7 @@ buscador.addEventListener("input", () => {
     const pokemonId = parseInt(buscador.value);
     if (!isNaN(pokemonId) && pokemonId > 0 && pokemonId < 151) {
         searchPokemonById(pokemonId);
+
     } else {
         clearPokemon();
         getPokemonList(offset, limit).then(lista => {
@@ -322,7 +411,7 @@ buscador.addEventListener("input", () => {
                 createDiv(lista, imgLista);
             });
         });
-
+        opciones.style.display = 'none';
     }
 });
 
@@ -342,9 +431,13 @@ createForm.addEventListener("submit", (event) => {
         .then(response => response.json())
         .then(data => { console.log(data) })
         .catch(error => {
-            console.error('No se pudo crear el pokemon');
+            console.error('No se pudo crear el pokemon', error);
         })
 
+})
+
+eliminarPokemon.addEventListener("click", (event) => {
+    alertDeletePokemon();
 })
 
 siguiente.addEventListener("click", siguientePag);

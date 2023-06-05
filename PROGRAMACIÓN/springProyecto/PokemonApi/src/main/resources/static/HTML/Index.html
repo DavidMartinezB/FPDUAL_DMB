@@ -1,0 +1,45 @@
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="../CSS/Index.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header id="inicio" class="header">
+        <h1 id="title">La Poquedeh</h1>
+        <div class="buscador">
+            <label id="label" for="inpu-buscador">ID</label>
+            <input type="search" id="searchButton" placeholder="Id del pokemon">
+        </div>
+    </header>
+    <div id="container">
+    </div>
+    <div id="opciones">
+        <button id="eliminarPokemon">Eliminar Pokemon</button>
+    </div>
+    <div class="botones">
+        <button id="anterior">Anterior</button>
+        <button id="siguiente">Siguiente</button>
+    </div>
+    <div class="crearPokemon">
+        <h2>Crea un Pokemon</h2>
+        <div class="form">
+            <form id="createForm" action="" method="post">
+                <label for="name">Nombre del pokemon</label>
+                <input required type="text" name="nombre" placeholder="Pikachu" id="nameForm">
+                <label for="weight">Peso del Pokemon</label>
+                <input required type="text" name="peso" placeholder="00" id="weightForm">
+                <label for="height">Altura del Pokemon</label>
+                <input required type="text" name="altura" placeholder="00" id="heightForm">
+                <input type="submit" value="Crear" id="crearPokemon">
+            </form>
+        </div>
+    </div>
+    <script src="../JS/Index.js"></script>
+</body>
+
+</html>
