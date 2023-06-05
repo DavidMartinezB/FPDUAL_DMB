@@ -22,6 +22,6 @@
 
 FROM nginx
 
-COPY ../HTML/pokemonApi usr/share/nginx/html
+COPY ./pokemonApi usr/share/nginx/html
 
 EXPOSE 80
